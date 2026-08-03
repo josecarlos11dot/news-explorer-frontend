@@ -1,0 +1,11 @@
+.news-card-list__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0;
+}
+
+.news-card-list__more-button {
+  display: block;
+  margin: 20px auto;
+}

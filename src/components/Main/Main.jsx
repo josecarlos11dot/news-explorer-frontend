@@ -1,19 +1,33 @@
 import { useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
+import Preloader from "../Preloader/Preloader";
+import NewsCardList from "../NewsCardList/NewsCardList";
 import { searchNews } from "../../utils/NewsApi";
 import "./Main.css";
 
 function Main() {
-  const [searchedKeyword, setSearchedKeyword] = useState("");
+  const [articles, setArticles] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   function handleSearch(keyword) {
-    setSearchedKeyword(keyword);
+    setHasSearched(true);
+    setIsLoading(true);
+    setError("");
+    setArticles([]);
+
     searchNews(keyword)
       .then((data) => {
-        console.log("Respuesta de News API:", data);
+        setArticles(data.articles || []);
       })
-      .catch((err) => {
-        console.error("Error al buscar noticias:", err);
+      .catch(() => {
+        setError(
+          "Lo sentimos, algo ha salido mal durante la solicitud. Es posible que haya un problema de conexión o que el servidor no funcione. Por favor, inténtalo más tarde"
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -27,10 +41,17 @@ function Main() {
         </p>
         <SearchForm onSearch={handleSearch} />
       </section>
-      {searchedKeyword && (
-        <p className="main__debug">
-          (Debug) Última búsqueda: {searchedKeyword}
-        </p>
+
+      {isLoading && <Preloader />}
+
+      {!isLoading && error && <p className="main__error">{error}</p>}
+
+      {!isLoading && !error && hasSearched && articles.length === 0 && (
+        <p className="main__not-found">No se ha encontrado nada</p>
+      )}
+
+      {!isLoading && !error && articles.length > 0 && (
+        <NewsCardList articles={articles} />
       )}
     </main>
   );
