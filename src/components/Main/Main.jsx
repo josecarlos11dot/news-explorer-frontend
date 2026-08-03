@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import NewsCardList from "../NewsCardList/NewsCardList";
@@ -11,6 +11,14 @@ function Main() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    const saved = localStorage.getItem("lastSearchResults");
+    if (saved) {
+      setArticles(JSON.parse(saved));
+      setHasSearched(true);
+    }
+  }, []);
+
   function handleSearch(keyword) {
     setHasSearched(true);
     setIsLoading(true);
@@ -19,7 +27,9 @@ function Main() {
 
     searchNews(keyword)
       .then((data) => {
-        setArticles(data.articles || []);
+        const results = data.articles || [];
+        setArticles(results);
+        localStorage.setItem("lastSearchResults", JSON.stringify(results));
       })
       .catch(() => {
         setError(
