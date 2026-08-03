@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import NewsCardList from "../NewsCardList/NewsCardList";
@@ -6,18 +6,15 @@ import { searchNews } from "../../utils/NewsApi";
 import "./Main.css";
 
 function Main() {
-  const [articles, setArticles] = useState([]);
-  const [hasSearched, setHasSearched] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("lastSearchResults");
-    if (saved) {
-      setArticles(JSON.parse(saved));
-      setHasSearched(true);
-    }
-  }, []);
+const [articles, setArticles] = useState(() => {
+const saved = localStorage.getItem("lastSearchResults");
+  return saved ? JSON.parse(saved) : [];
+});
+const [hasSearched, setHasSearched] = useState(() => {
+  return localStorage.getItem("lastSearchResults") !== null;
+});
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState("");
 
   function handleSearch(keyword) {
     setHasSearched(true);

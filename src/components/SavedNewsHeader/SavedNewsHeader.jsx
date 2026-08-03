@@ -9,7 +9,7 @@ function formatKeywords(keywords) {
   return `${first}, ${second} y ${remaining} más`;
 }
 
-function SavedNewsHeader({ userName, savedCount, keywords }) {
+function SavedNewsHeader({  savedCount, keywords }) {
   return (
     <section className="saved-news-header">
       <p className="saved-news-header__greeting">
