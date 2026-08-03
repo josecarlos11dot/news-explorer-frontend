@@ -4,8 +4,10 @@ import "./Header.css";
 function Header() {
   return (
     <header className="header">
-      <p className="header__logo">NewsExplorer</p>
-      <Navigation />
+      <div className="header__content">
+        <p className="header__logo">NewsExplorer</p>
+        <Navigation />
+      </div>
     </header>
   );
 }

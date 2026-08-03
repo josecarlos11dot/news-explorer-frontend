@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
 function Navigation() {
   return (
     <nav className="navigation">
-      <Link className="navigation__link" to="/">
+      <NavLink className="navigation__link" to="/">
         Inicio
-      </Link>
+      </NavLink>
       <button className="navigation__button" type="button">
         Iniciar sesión
       </button>
