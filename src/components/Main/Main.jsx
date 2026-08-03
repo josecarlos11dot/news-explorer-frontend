@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
+import { searchNews } from "../../utils/NewsApi";
 import "./Main.css";
 
 function Main() {
@@ -7,7 +8,13 @@ function Main() {
 
   function handleSearch(keyword) {
     setSearchedKeyword(keyword);
-    console.log("Buscando:", keyword);
+    searchNews(keyword)
+      .then((data) => {
+        console.log("Respuesta de News API:", data);
+      })
+      .catch((err) => {
+        console.error("Error al buscar noticias:", err);
+      });
   }
 
   return (
