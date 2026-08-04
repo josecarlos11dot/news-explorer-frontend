@@ -1,15 +1,25 @@
 .main__hero {
-  background-image: linear-gradient(rgba(26, 27, 34, 0.5), rgba(26, 27, 34, 0.5)),
-    url("../../images/hero-bg.jpg");
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  background-color: #1a1b22;
   color: #ffffff;
   padding: 80px 104px;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .main__hero-content {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 600px;
   text-align: left;

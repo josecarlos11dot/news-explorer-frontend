@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 import NewsCardList from "../NewsCardList/NewsCardList";
+import HeroBackground from "./HeroBackground";
 import { searchNews } from "../../utils/NewsApi";
 import "./Main.css";
 
@@ -41,6 +42,7 @@ const [error, setError] = useState("");
   return (
     <main className="main">
       <section className="main__hero">
+     <HeroBackground />   
   <div className="main__hero-content">
     <h1 className="main__title">¿Qué está pasando en el mundo?</h1>
     <p className="main__subtitle">
