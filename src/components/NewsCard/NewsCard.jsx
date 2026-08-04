@@ -14,23 +14,21 @@ function NewsCard({ article }) {
 
   return (
     <li className="news-card">
-      <img
-        className="news-card__image"
-        src={urlToImage}
-        alt={title}
-      />
-      <button
-        className="news-card__save-button"
-        type="button"
-        title="Inicia sesión para guardar artículos"
-      >
-        Guardar
-      </button>
-      <p className="news-card__date">{formatDate(publishedAt)}</p>
-      <h3 className="news-card__title">{title}</h3>
-      <p className="news-card__description">{description}</p>
-      <span className="news-card__source">{source?.name}</span>
-    </li>
+  <div className="news-card__image-wrapper">
+    <img className="news-card__image" src={urlToImage} alt={title} />
+    <button
+      className="news-card__save-button"
+      type="button"
+      title="Inicia sesión para guardar artículos"
+    >
+      Guardar
+    </button>
+  </div>
+  <p className="news-card__date">{formatDate(publishedAt)}</p>
+  <h3 className="news-card__title">{title}</h3>
+  <p className="news-card__description">{description}</p>
+  <span className="news-card__source">{source?.name}</span>
+</li>
   );
 }
 

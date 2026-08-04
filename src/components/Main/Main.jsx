@@ -58,8 +58,13 @@ const [error, setError] = useState("");
       )}
 
       {!isLoading && !error && articles.length > 0 && (
-        <NewsCardList articles={articles} />
-      )}
+         <section className="main__results">
+         <h2 className="main__results-title">Resultados de la búsqueda</h2>
+         <NewsCardList articles={articles} />
+        </section>
+    )}
+
+
     </main>
   );
 }

@@ -27,7 +27,7 @@ function NewsCardList({ articles }) {
           type="button"
           onClick={handleShowMore}
         >
-          Mostrar más
+          Ver más
         </button>
       )}
     </section>

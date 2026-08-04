@@ -3,9 +3,36 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__copyright">
-        © {new Date().getFullYear()} NewsExplorer
-      </p>
+      <div className="footer__content">
+        <p className="footer__copyright">
+          © {new Date().getFullYear()} Supersite, Powered by News API
+        </p>
+        <div className="footer__right">
+          <div className="footer__links">
+            <a className="footer__link" href="/">Inicio</a>
+            <a className="footer__link" href="https://practicum.yandex.com/" target="_blank" rel="noreferrer">Practicum</a>
+          </div>
+          <div className="footer__socials">
+            <a className="footer__social-link" href="https://github.com/josecarlos11dot" target="_blank" rel="noreferrer" aria-label="GitHub">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M12 1.89474C6.41702 1.89474 1.89478 6.42319 1.89478 12C1.89478 16.4664 4.79174 20.2505 8.80531 21.5904C9.30778 21.6834 9.49388 21.3733 9.49388 21.1003C9.49388 20.8584 9.48768 20.2257 9.48148 19.382C6.67136 19.9899 6.07584 18.0297 6.07584 18.0297C5.61679 16.8634 4.95303 16.5533 4.95303 16.5533C4.03493 15.9267 5.02127 15.9391 5.02127 15.9391C6.03241 16.0136 6.5721 16.9813 6.5721 16.9813C7.47159 18.5259 8.93558 18.0793 9.51249 17.8188C9.60554 17.1674 9.86608 16.7208 10.1514 16.4664C7.90582 16.2121 5.54855 15.3436 5.54855 11.4727C5.54855 10.3685 5.93936 9.46904 6.59071 8.76186C6.48526 8.50752 6.13787 7.47776 6.68997 6.08821C6.68997 6.08821 7.53983 5.81527 9.46907 7.12417C10.2755 6.90085 11.1378 6.78919 12 6.78299C12.8561 6.78919 13.7246 6.90085 14.531 7.12417C16.4602 5.81527 17.3101 6.08821 17.3101 6.08821C17.8622 7.47776 17.5148 8.50752 17.4094 8.76186C18.0545 9.46904 18.4453 10.3685 18.4453 11.4727C18.4453 15.356 16.0818 16.2059 13.83 16.4602C14.1898 16.7704 14.5186 17.3907 14.5186 18.3336C14.5186 19.686 14.5062 20.7715 14.5062 21.1065C14.5062 21.3795 14.6861 21.6896 15.201 21.5904C19.2145 20.2505 22.1053 16.4664 22.1053 12.0062C22.1053 6.42319 17.5831 1.89474 12 1.89474Z" fill="#1A1B22"/>
+              </svg>
+            </a>
+            <a className="footer__social-link" href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#clip0_1_501)">
+                  <path d="M20.8958 2H3.10417C2.49417 2 2 2.49417 2 3.10417V20.8967C2 21.5058 2.49417 22 3.10417 22H12.6833V14.255H10.0767V11.2367H12.6833V9.01083C12.6833 6.4275 14.2608 5.02083 16.5658 5.02083C17.67 5.02083 18.6183 5.10333 18.895 5.14V7.84L17.2967 7.84083C16.0433 7.84083 15.8008 8.43667 15.8008 9.31V11.2375H18.79L18.4008 14.2558H15.8008V22H20.8975C21.5058 22 22 21.5058 22 20.8958V3.10417C22 2.49417 21.5058 2 20.8958 2V2Z" fill="#1A1B22"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_1_501">
+                    <rect width="20" height="20" fill="white" transform="translate(2 2)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
