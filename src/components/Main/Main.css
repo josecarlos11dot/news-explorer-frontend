@@ -1,15 +1,26 @@
 .main__hero {
-  background-color: #1a1b22;
-  background-image: linear-gradient(rgba(26, 27, 34, 0.6), rgba(26, 27, 34, 0.6));
+  background-image: linear-gradient(rgba(26, 27, 34, 0.5), rgba(26, 27, 34, 0.5)),
+    url("../../images/hero-bg.jpg");
   background-size: cover;
   background-position: center;
   color: #ffffff;
   padding: 80px 104px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.main__hero-content {
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
 }
 
 .main__title {
-  font-size: 48px;
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+  letter-spacing: 0;
   margin: 0 0 16px;
   color: #ffffff;
 }
@@ -17,8 +28,7 @@
 .main__subtitle {
   font-size: 18px;
   color: #b6bcbf;
-  max-width: 600px;
-  margin: 0 auto 32px;
+  margin: 0 0 32px;
 }
 
 .main__results-title {
