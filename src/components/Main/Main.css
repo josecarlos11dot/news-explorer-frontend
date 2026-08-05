@@ -58,3 +58,33 @@
   text-align: left;
   box-sizing: border-box;
 }
+
+.main__not-found {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.main__not-found-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.main__not-found-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1b22;
+  margin: 0 0 12px;
+}
+
+.main__not-found-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #b6bcbf;
+  max-width: 400px;
+  margin: 0 auto;
+}
