@@ -37,6 +37,28 @@
   font-size: 0;
 }
 
+.news-card__save-button::after {
+  content: "Inicia sesión para guardar artículos";
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 8px);
+  transform: translateY(-50%);
+  background-color: #FFFFFF;
+  color: #000000;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.news-card__save-button:hover::after {
+  opacity: 1;
+}
+
 .news-card__date {
   color: #b6bcbf;
   font-size: 13px;
