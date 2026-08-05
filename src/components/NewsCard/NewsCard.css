@@ -28,13 +28,21 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border: none;
-  border-radius: 100px;
+  border-radius: 8px;
   background-color: #ffffff;
   cursor: pointer;
-  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b6bcbf;
+  transition: color 0.2s ease;
+}
+
+.news-card__save-button:hover {
+  color: #1a1b22;
 }
 
 .news-card__save-button::after {
