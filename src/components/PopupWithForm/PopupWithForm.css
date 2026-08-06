@@ -1,4 +1,5 @@
 .popup {
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,12 +13,29 @@
 
 .popup__container {
   position: relative;
+  width: 430px;
+  box-sizing: border-box;
   background: #fff;
-  padding: 30px;
+  padding: 34px;
+  border-radius: 16px;
 }
 
 .popup__close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.popup__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 25px;
+  color: #1a1b22;
 }
