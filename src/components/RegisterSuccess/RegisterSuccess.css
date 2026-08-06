@@ -1,0 +1,18 @@
+.register-success__message {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #1a1b22;
+  margin: 0 0 16px;
+  max-width: 315px;
+}
+
+.register-success__link {
+  background: none;
+  border: none;
+  color: #2f71e5;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  text-decoration: underline;
+}
