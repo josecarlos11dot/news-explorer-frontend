@@ -46,29 +46,33 @@ function App() {
 
   return (
     <div className="app">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header onLoginClick={handleLoginClick} />
-              <Main />
-              <About />
-              <Footer />
-            </>
-          }
+     <Routes>
+  <Route
+    path="/"
+    element={
+      <>
+        <Header onLoginClick={handleLoginClick} isLoggedIn={false} />
+        <Main />
+        <About />
+        <Footer />
+      </>
+    }
+  />
+  <Route
+    path="/saved-news"
+    element={
+      <>
+        <Header
+          onLoginClick={handleLoginClick}
+          isLoggedIn
+          userName="Elise"
         />
-        <Route
-          path="/saved-news"
-          element={
-            <>
-              <Header onLoginClick={handleLoginClick} />
-              <SavedNews />
-              <Footer />
-            </>
-          }
-        />
-      </Routes>
+        <SavedNews />
+        <Footer />
+      </>
+    }
+  />
+</Routes>   
 
       <PopupWithForm
         title="Iniciar sesión"

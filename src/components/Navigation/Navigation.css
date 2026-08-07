@@ -6,7 +6,7 @@
 
 .navigation__link {
   position: relative;
-  color: #ffffff;
+  color: inherit;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -20,20 +20,33 @@
   right: -6px;
   bottom: -25px;
   height: 2px;
-  background-color: #ffffff;
+  background-color: currentColor;
 }
 
 .navigation__button {
   background: transparent;
-  border: 1px solid #ffffff;
+  border: 1px solid currentColor;
   border-radius: 100px;
-  color: #ffffff;
+  color: inherit;
   padding: 10px 20px;
   font-size: 14px;
   cursor: pointer;
 }
 
 .navigation__button:hover {
-  background-color: #ffffff;
+  background-color: currentColor;
   color: #1a1b22;
+}
+
+.navigation__user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  padding: 10px 20px;
+  background: transparent;
+  color: inherit;
+  font-size: 14px;
+  cursor: pointer;
 }

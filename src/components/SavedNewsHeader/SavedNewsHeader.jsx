@@ -6,19 +6,21 @@ function formatKeywords(keywords) {
 
   const [first, second] = keywords;
   const remaining = keywords.length - 2;
-  return `${first}, ${second} y ${remaining} más`;
+  return `${first}, ${second}, y ${remaining} más`;
 }
 
-function SavedNewsHeader({  savedCount, keywords }) {
+function SavedNewsHeader({ userName, savedCount, keywords }) {
   return (
     <section className="saved-news-header">
-      <p className="saved-news-header__greeting">
-        Elise, has guardado {savedCount} artículo
+      <p className="saved-news-header__breadcrumb">Artículos guardados</p>
+      <h1 className="saved-news-header__title">
+        {userName}, tienes {savedCount} artículo
+        {savedCount !== 1 ? "s" : ""} guardado
         {savedCount !== 1 ? "s" : ""}
-      </p>
+      </h1>
       {keywords.length > 0 && (
         <p className="saved-news-header__keywords">
-          {formatKeywords(keywords)}
+          Por palabras clave: <strong>{formatKeywords(keywords)}</strong>
         </p>
       )}
     </section>

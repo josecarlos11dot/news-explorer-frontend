@@ -101,3 +101,36 @@
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.news-card__keyword-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: #ffffff;
+  color: #1a1b22;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.news-card__delete-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b6bcbf;
+  transition: color 0.2s ease;
+}
+
+.news-card__delete-button:hover {
+  color: #1a1b22;
+}

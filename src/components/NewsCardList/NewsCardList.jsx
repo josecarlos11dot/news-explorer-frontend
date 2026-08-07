@@ -4,7 +4,7 @@ import "./NewsCardList.css";
 
 const CARDS_PER_PAGE = 3;
 
-function NewsCardList({ articles }) {
+function NewsCardList({ articles, isSavedView }) {
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
 
   function handleShowMore() {
@@ -18,7 +18,11 @@ function NewsCardList({ articles }) {
     <section className="news-card-list">
       <ul className="news-card-list__list">
         {visibleArticles.map((article, index) => (
-          <NewsCard key={`${article.url}-${index}`} article={article} />
+          <NewsCard
+            key={`${article.url}-${index}`}
+            article={article}
+            isSavedView={isSavedView}
+          />
         ))}
       </ul>
       {hasMore && (

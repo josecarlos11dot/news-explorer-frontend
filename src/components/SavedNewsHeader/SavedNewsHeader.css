@@ -1,2 +1,35 @@
 .saved-news-header {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 104px;
+}
+
+.saved-news-header__breadcrumb {
+  width: 712px;
+  max-width: 100%;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #b6bcbf;
+  margin: 0 0 16px;
+}
+
+.saved-news-header__title {
+  width: 530px;
+  max-width: 100%;
+  font-size: 40px;
+  line-height: 46px;
+  font-weight: 400;
+  color: #1a1b22;
+  margin: 0 0 16px;
+  font-family: "Roboto Slab", serif;
+}
+
+.saved-news-header__keywords {
+  width: 712px;
+  max-width: 100%;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #1a1b22;
 }
