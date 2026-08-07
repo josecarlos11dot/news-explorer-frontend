@@ -32,3 +32,19 @@
 .about__text + .about__text {
   margin-top: 12px;
 }
+
+@media screen and (max-width: 768px) {
+  .about {
+    padding: 60px 40px;
+    gap: 32px;
+  }
+
+  .about__image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about__title {
+    font-size: 32px;
+  }
+}

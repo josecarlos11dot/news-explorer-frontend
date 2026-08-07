@@ -88,3 +88,19 @@
   max-width: 400px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  .main__hero {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .main__title {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .main__results-title {
+    padding: 0 40px;
+  }
+}

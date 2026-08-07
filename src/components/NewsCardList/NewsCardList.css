@@ -26,3 +26,9 @@
   background-color: #d8d8d8;
 }
 
+@media screen and (max-width: 768px) {
+  .news-card-list__list {
+    padding: 0 24px;
+    gap: 8px;
+  }
+}
