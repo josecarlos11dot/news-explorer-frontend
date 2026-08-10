@@ -48,3 +48,28 @@
     font-size: 32px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .about {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 16px;
+    gap: 24px;
+  }
+
+  .about__image {
+    width: 272px;
+    height: 272px;
+  }
+
+  .about__title {
+    font-size: 24px;
+  }
+
+  .about__text {
+    font-size: 15px;
+    max-width: 288px;
+    margin: 0 auto;
+  }
+}

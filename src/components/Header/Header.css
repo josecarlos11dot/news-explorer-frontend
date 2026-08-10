@@ -35,3 +35,9 @@
     padding: 20px 40px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .header {
+    background-color: #1a1b22;
+  }
+}
