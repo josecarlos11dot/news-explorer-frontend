@@ -7,6 +7,7 @@
   max-width: 1440px;
   margin: 40px auto;
   box-sizing: border-box;
+
 }
 
 .news-card-list__more-button {
@@ -28,7 +29,7 @@
 
 @media screen and (max-width: 768px) {
   .news-card-list__list {
-    padding: 0 24px;
+    padding: 0 40px;
     gap: 8px;
   }
 }

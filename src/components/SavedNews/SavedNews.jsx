@@ -70,7 +70,9 @@ function SavedNews() {
         savedCount={MOCK_SAVED_ARTICLES.length}
         keywords={keywords}
       />
-      <NewsCardList articles={MOCK_SAVED_ARTICLES} isSavedView />
+      <section className="saved-news__results">
+        <NewsCardList articles={MOCK_SAVED_ARTICLES} isSavedView />
+      </section>
     </div>
   );
 }
