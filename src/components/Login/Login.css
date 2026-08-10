@@ -66,3 +66,13 @@
   font-size: 13px;
   padding: 0;
 }
+
+@media screen and (max-width: 480px) {
+  .login__input {
+    width: 100%;
+  }
+
+  .login__submit {
+    width: 100%;
+  }
+}

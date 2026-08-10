@@ -30,6 +30,12 @@
   text-decoration: none;
 }
 
+@media screen and (max-width: 768px) {
+  .header__content {
+    padding: 13px 40px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .header:not(.header_theme_light) {
     background-color: #1a1b22;

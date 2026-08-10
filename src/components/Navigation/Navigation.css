@@ -4,6 +4,12 @@
   gap: 24px;
 }
 
+.navigation__menu {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .navigation__link {
   position: relative;
   color: inherit;
@@ -58,6 +64,12 @@
   color: inherit;
   cursor: pointer;
   padding: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation {
+    gap: 16px;
+  }
 }
 
 @media screen and (max-width: 480px) {
