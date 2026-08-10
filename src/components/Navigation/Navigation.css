@@ -92,4 +92,9 @@
     width: 288px;
     text-align: center;
   }
+  .navigation_theme_light .navigation__menu {
+    background-color: #ffffff;
+    color: #1a1b22;
+    border-bottom: 1px solid #e8e8e8;
+  }
 }

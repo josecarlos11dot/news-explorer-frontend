@@ -14,7 +14,7 @@ function Navigation({ onLoginClick, isLoggedIn, userName, onLogoutClick }) {
   }
 
   return (
-    <nav className={`navigation ${isMenuOpen ? "navigation_open" : ""}`}>
+    <nav className={`navigation ${isMenuOpen ? "navigation_open" : ""} ${isLoggedIn ? "navigation_theme_light" : ""}`}>
      <button
   className="navigation__burger"
   type="button"
