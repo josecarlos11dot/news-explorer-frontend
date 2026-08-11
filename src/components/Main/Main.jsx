@@ -53,7 +53,10 @@ function Main() {
 
       {isLoading && <Preloader />}
 
-      {!isLoading && error && <p className="main__error">{error}</p>}
+      {!isLoading && error && (
+        <p className="main__error" role="alert">
+        {error}
+      </p>)}
 
       {!isLoading && !error && hasSearched && articles.length === 0 && (
   <div className="main__not-found">

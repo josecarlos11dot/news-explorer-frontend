@@ -46,7 +46,9 @@ function Register({ onSubmit, onLoginClick }) {
         value={email}
         onChange={handleEmailChange}
       />
-      {emailError && <span className="register__error">{emailError}</span>}
+      {emailError && <span className="register__error" role="alert">
+        {emailError}
+      </span>}
 
       <label className="register__label" htmlFor="register-password">
         Contraseña
@@ -73,7 +75,9 @@ function Register({ onSubmit, onLoginClick }) {
       />
 
       {serverError && (
-        <span className="register__server-error">{serverError}</span>
+        <span className="register__server-error" role="alert">
+          {serverError}
+        </span>
       )}
 
       <button className="register__submit" type="submit" disabled={!isValid}>

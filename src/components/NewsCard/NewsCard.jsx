@@ -27,6 +27,7 @@ function NewsCard({ article, isSavedView }) {
          className="news-card__delete-button"
          type="button"
          title="Eliminar de guardados"
+         arial-label="Eliminar de guardados"
         >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path
@@ -42,6 +43,7 @@ function NewsCard({ article, isSavedView }) {
             className="news-card__save-button"
             type="button"
             title="Inicia sesión para guardar artículos"
+            arial-label="Inicia sesión para guardar artículos"
           >
             <svg width="50" height="50" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path

@@ -50,6 +50,7 @@ function Navigation({ onLoginClick, isLoggedIn, userName, onLogoutClick }) {
               className="navigation__user"
               type="button"
               onClick={onLogoutClick}
+              aria-label={`Cerrar sesión de ${userName}`}
             >
               <span>{userName}</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

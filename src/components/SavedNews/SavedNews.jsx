@@ -64,7 +64,7 @@ function SavedNews() {
   const keywords = [...new Set(MOCK_SAVED_ARTICLES.map((a) => a.keyword))];
 
   return (
-    <div className="saved-news">
+    <main className="saved-news">
       <SavedNewsHeader
         userName="Elise"
         savedCount={MOCK_SAVED_ARTICLES.length}
@@ -73,7 +73,7 @@ function SavedNews() {
       <section className="saved-news__results">
         <NewsCardList articles={MOCK_SAVED_ARTICLES} isSavedView />
       </section>
-    </div>
+    </main>
   );
 }
 

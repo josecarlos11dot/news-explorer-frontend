@@ -27,19 +27,26 @@ function PopupWithForm({ title, isOpen, onClose, children }) {
 
   return (
     <div className="popup" onClick={handleOverlayClick}>
-      <div className="popup__container">
-        <button
-          className="popup__close-button"
-          type="button"
-          onClick={onClose}
-          aria-label="Cerrar"
-        >
-          ✕
-        </button>
-        <h2 className="popup__title">{title}</h2>
-        {children}
-      </div>
-    </div>
+  <div
+    className="popup__container"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="popup-title"
+  >
+    <button
+      className="popup__close-button"
+      type="button"
+      onClick={onClose}
+      aria-label="Cerrar"
+    >
+      ✕
+    </button>
+    <h2 className="popup__title" id="popup-title">
+      {title}
+    </h2>
+    {children}
+  </div>
+</div>
   );
 }
 

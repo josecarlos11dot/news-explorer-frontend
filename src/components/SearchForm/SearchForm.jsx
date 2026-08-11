@@ -21,14 +21,18 @@ function SearchForm({ onSearch }) {
 
   return (
     <form className="search-form" onSubmit={handleSubmit} noValidate>
+        <label className="search-form__label" htmlFor="search-input">
+            Buscar noticias
+        </label>
       <input
+        id="search-input"
         className="search-form__input"
         type="text"
         placeholder="Introduce un tema"
         value={keyword}
         onChange={handleChange}
       />
-      <button className="search-form__button" type="submit">
+      <button className="search-form__button" type="submit" aria-label="Buscar noticias">
         Buscar
       </button>
       {error && <span className="search-form__error">{error}</span>}
