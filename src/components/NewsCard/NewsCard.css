@@ -190,7 +190,15 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .news-card__save-button::after {
+    width: 100px;
+    white-space: normal;
+    text-align: right;
+  }
 }
+
+
 
 @media screen and (max-width: 480px) {
   .news-card {
