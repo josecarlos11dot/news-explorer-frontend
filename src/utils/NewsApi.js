@@ -1,4 +1,4 @@
-const BASE_URL = "https://newsapi.org/v2";
+const BASE_URL = "https://corsproxy.io/?url=https://newsapi.org/v2";
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 function getDateRange() {
