@@ -4,7 +4,13 @@ Proyecto final del bootcamp de Desarrollo Web de TripleTen. Aplicación que perm
 
 ## Demo
 
-🔗 URL del proyecto desplegado: *(pendiente)*
+🔗 [https://news-explorer-frontend-eta.vercel.app](https://news-explorer-frontend-eta.vercel.app)
+
+> ⚠️ **Nota sobre News API en producción:** el plan gratuito (Developer) de [News API](https://newsapi.org/) restringe las solicitudes del navegador únicamente a `localhost`.
+>
+> Al desplegar en un dominio público (como Vercel), las peticiones a la API se bloquean automáticamente por política del propio servicio, sin relación con el código del proyecto.
+>
+> Para ver la búsqueda de noticias funcionando, se recomienda clonar el repositorio y ejecutarlo en modo local (ver instrucciones abajo).
 
 ## Tecnologías
 
@@ -26,32 +32,35 @@ Proyecto final del bootcamp de Desarrollo Web de TripleTen. Aplicación que perm
 ## Instalación local
 
 1. Clona el repositorio:
+
 ```bash
-   git clone https://github.com/josecarlos11dot/news-explorer-frontend.git
-   cd news-explorer-frontend
+git clone https://github.com/josecarlos11dot/news-explorer-frontend.git
+cd news-explorer-frontend
 ```
 
 2. Instala las dependencias:
+
 ```bash
-   npm install
+npm install
 ```
 
 3. Crea un archivo `.env` en la raíz del proyecto con tu propia clave de [News API](https://newsapi.org/):
 
-
-
-
 ```
-   VITE_NEWS_API_KEY=tu_clave_aqui
-   ```
+VITE_NEWS_API_KEY=tu_clave_aqui
+```
+
+
 4. Ejecuta el proyecto en modo desarrollo:
+
 ```bash
-   npm run dev
+npm run dev
 ```
 
 5. Para generar el build de producción:
+
 ```bash
-   npm run build
+npm run build
 ```
 
 ## Repositorio relacionado
