@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
@@ -9,7 +10,7 @@ function Footer() {
         </p>
         <div className="footer__right">
           <div className="footer__links">
-            <a className="footer__link" href="/">Inicio</a>
+            <Link className="footer__link" to="/">Inicio</Link>
             <a className="footer__link" href="https://practicum.yandex.com/" target="_blank" rel="noreferrer">Practicum</a>
           </div>
           <div className="footer__socials">
