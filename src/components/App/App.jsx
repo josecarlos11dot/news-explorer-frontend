@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import About from "../About/About";
@@ -14,6 +14,7 @@ import { login, register, getUserInfo } from "../../utils/MainApi";
 import "./App.css";
 
 function App() {
+  const navigate = useNavigate();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
@@ -80,6 +81,12 @@ function App() {
       });
   }
 
+  function handleLogout() {
+    localStorage.removeItem("jwt");
+    setCurrentUser(null);
+    navigate("/");
+  }
+
   const isLoggedIn = Boolean(currentUser);
 
   return (
@@ -92,6 +99,7 @@ function App() {
               <>
                 <Header
                   onLoginClick={handleLoginClick}
+                  onLogoutClick={handleLogout}
                   isLoggedIn={isLoggedIn}
                   userName={currentUser?.name}
                 />
@@ -107,6 +115,7 @@ function App() {
               <>
                 <Header
                   onLoginClick={handleLoginClick}
+                  onLogoutClick={handleLogout}
                   isLoggedIn={isLoggedIn}
                   userName={currentUser?.name}
                 />
