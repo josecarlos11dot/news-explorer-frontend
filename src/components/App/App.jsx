@@ -11,7 +11,15 @@ import Register from "../Register/Register";
 import RegisterSuccess from "../RegisterSuccess/RegisterSuccess";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { login, register, getUserInfo } from "../../utils/MainApi";
+import {
+  login,
+  register,
+  getUserInfo,
+  getArticles,
+  saveArticle,
+  deleteArticle,
+} from "../../utils/MainApi";
+import { toApiArticle, toDisplayArticle } from "../../utils/articleAdapter";
 import "./App.css";
 
 function checkStoredToken() {
@@ -27,6 +35,19 @@ function checkStoredToken() {
     });
 }
 
+function fetchSavedArticles(currentUser) {
+  const token = localStorage.getItem("jwt");
+  if (!currentUser || !token) {
+    return Promise.resolve([]);
+  }
+  return getArticles(token)
+    .then((articles) => articles.map(toDisplayArticle))
+    .catch((err) => {
+      console.error(err);
+      return [];
+    });
+}
+
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,6 +57,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authError, setAuthError] = useState("");
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const shouldOpenLoginFromRedirect = Boolean(location.state?.openLogin);
   const isLoginPopupOpen = isLoginOpen || shouldOpenLoginFromRedirect;
@@ -48,6 +70,12 @@ function App() {
       setIsCheckingAuth(false);
     });
   }, []);
+
+  useEffect(() => {
+    fetchSavedArticles(currentUser).then((articles) => {
+      setSavedArticles(articles);
+    });
+  }, [currentUser]);
 
   function clearRedirectState() {
     if (shouldOpenLoginFromRedirect) {
@@ -108,6 +136,31 @@ function App() {
     setCurrentUser(null);
   }
 
+  function handleSaveArticle(article) {
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
+    saveArticle(toApiArticle(article), token)
+      .then((savedArticle) => {
+        setSavedArticles((prev) => [
+          ...prev,
+          toDisplayArticle({ ...savedArticle, source: article.source?.name }),
+        ]);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  function handleDeleteArticle(articleId) {
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
+    deleteArticle(articleId, token)
+      .then(() => {
+        setSavedArticles((prev) =>
+          prev.filter((article) => article._id !== articleId)
+        );
+      })
+      .catch((err) => console.error(err));
+  }
+
   const isLoggedIn = Boolean(currentUser);
 
   if (isCheckingAuth) {
@@ -128,7 +181,13 @@ function App() {
                   isLoggedIn={isLoggedIn}
                   userName={currentUser?.name}
                 />
-                <Main />
+                <Main
+                  isLoggedIn={isLoggedIn}
+                  savedArticles={savedArticles}
+                  onSaveArticle={handleSaveArticle}
+                  onDeleteArticle={handleDeleteArticle}
+                  onLoginRequired={handleLoginClick}
+                />
                 <About />
                 <Footer />
               </>
@@ -144,7 +203,11 @@ function App() {
                   isLoggedIn={isLoggedIn}
                   userName={currentUser?.name}
                 />
-                <SavedNews />
+                <SavedNews
+                  userName={currentUser?.name}
+                  savedArticles={savedArticles}
+                  onDeleteArticle={handleDeleteArticle}
+                />
                 <Footer />
               </ProtectedRoute>
             }
