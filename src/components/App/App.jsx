@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import About from "../About/About";
@@ -9,31 +9,51 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import RegisterSuccess from "../RegisterSuccess/RegisterSuccess";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { login, register, getUserInfo } from "../../utils/MainApi";
 import "./App.css";
 
+function checkStoredToken() {
+  const token = localStorage.getItem("jwt");
+  if (!token) {
+    return Promise.resolve(null);
+  }
+  return getUserInfo(token)
+    .catch((err) => {
+      console.error(err);
+      localStorage.removeItem("jwt");
+      return null;
+    });
+}
+
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [authError, setAuthError] = useState("");
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  const shouldOpenLoginFromRedirect = Boolean(location.state?.openLogin);
+  const isLoginPopupOpen = isLoginOpen || shouldOpenLoginFromRedirect;
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (!token) return;
-
-    getUserInfo(token)
-      .then((userData) => {
+    checkStoredToken().then((userData) => {
+      if (userData) {
         setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.error(err);
-        localStorage.removeItem("jwt");
-      });
+      }
+      setIsCheckingAuth(false);
+    });
   }, []);
+
+  function clearRedirectState() {
+    if (shouldOpenLoginFromRedirect) {
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }
 
   function handleLoginClick() {
     setIsRegisterOpen(false);
@@ -53,6 +73,7 @@ function App() {
     setIsLoginOpen(false);
     setIsRegisterOpen(false);
     setIsSuccessOpen(false);
+    clearRedirectState();
   }
 
   function handleLoginSubmit({ email, password }) {
@@ -82,12 +103,16 @@ function App() {
   }
 
   function handleLogout() {
+    navigate("/", { replace: true, state: {} });
     localStorage.removeItem("jwt");
     setCurrentUser(null);
-    navigate("/");
   }
 
   const isLoggedIn = Boolean(currentUser);
+
+  if (isCheckingAuth) {
+    return null;
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -112,7 +137,7 @@ function App() {
           <Route
             path="/saved-news"
             element={
-              <>
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Header
                   onLoginClick={handleLoginClick}
                   onLogoutClick={handleLogout}
@@ -121,13 +146,13 @@ function App() {
                 />
                 <SavedNews />
                 <Footer />
-              </>
+              </ProtectedRoute>
             }
           />
         </Routes>
         <PopupWithForm
           title="Iniciar sesión"
-          isOpen={isLoginOpen}
+          isOpen={isLoginPopupOpen}
           onClose={handleClosePopups}
         >
           <Login
