@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -9,22 +9,42 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import RegisterSuccess from "../RegisterSuccess/RegisterSuccess";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { login, register, getUserInfo } from "../../utils/MainApi";
 import "./App.css";
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [authError, setAuthError] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (!token) return;
+
+    getUserInfo(token)
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => {
+        console.error(err);
+        localStorage.removeItem("jwt");
+      });
+  }, []);
 
   function handleLoginClick() {
     setIsRegisterOpen(false);
     setIsSuccessOpen(false);
+    setAuthError("");
     setIsLoginOpen(true);
   }
 
   function handleRegisterClick() {
     setIsLoginOpen(false);
     setIsSuccessOpen(false);
+    setAuthError("");
     setIsRegisterOpen(true);
   }
 
@@ -34,76 +54,99 @@ function App() {
     setIsSuccessOpen(false);
   }
 
-  function handleLoginSubmit(data) {
-    console.log("Login submit:", data);
+  function handleLoginSubmit({ email, password }) {
+    return login({ email, password })
+      .then((data) => {
+        localStorage.setItem("jwt", data.token);
+        return getUserInfo(data.token);
+      })
+      .then((userData) => {
+        setCurrentUser(userData);
+        handleClosePopups();
+      })
+      .catch((err) => {
+        setAuthError(err.message || "Correo o contraseña incorrectos");
+      });
   }
 
-  function handleRegisterSubmit(data) {
-    console.log("Register submit:", data);
-    setIsRegisterOpen(false);
-    setIsSuccessOpen(true);
+  function handleRegisterSubmit({ email, password, name }) {
+    return register({ email, password, name })
+      .then(() => {
+        setIsRegisterOpen(false);
+        setIsSuccessOpen(true);
+      })
+      .catch((err) => {
+        setAuthError(err.message || "Error al registrarse");
+      });
   }
+
+  const isLoggedIn = Boolean(currentUser);
 
   return (
-    <div className="app">
-     <Routes>
-  <Route
-    path="/"
-    element={
-      <>
-        <Header onLoginClick={handleLoginClick} isLoggedIn={false} />
-        <Main />
-        <About />
-        <Footer />
-      </>
-    }
-  />
-  <Route
-    path="/saved-news"
-    element={
-      <>
-        <Header
-          onLoginClick={handleLoginClick}
-          isLoggedIn
-          userName="Elise"
-        />
-        <SavedNews />
-        <Footer />
-      </>
-    }
-  />
-</Routes>   
-
-      <PopupWithForm
-        title="Iniciar sesión"
-        isOpen={isLoginOpen}
-        onClose={handleClosePopups}
-      >
-        <Login
-          onSubmit={handleLoginSubmit}
-          onRegisterClick={handleRegisterClick}
-        />
-      </PopupWithForm>
-
-      <PopupWithForm
-        title="Inscribirse"
-        isOpen={isRegisterOpen}
-        onClose={handleClosePopups}
-      >
-        <Register
-          onSubmit={handleRegisterSubmit}
-          onLoginClick={handleLoginClick}
-        />
-      </PopupWithForm>
-
-      <PopupWithForm
-        title=""
-        isOpen={isSuccessOpen}
-        onClose={handleClosePopups}
-      >
-        <RegisterSuccess onLoginClick={handleLoginClick} />
-      </PopupWithForm>
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header
+                  onLoginClick={handleLoginClick}
+                  isLoggedIn={isLoggedIn}
+                  userName={currentUser?.name}
+                />
+                <Main />
+                <About />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/saved-news"
+            element={
+              <>
+                <Header
+                  onLoginClick={handleLoginClick}
+                  isLoggedIn={isLoggedIn}
+                  userName={currentUser?.name}
+                />
+                <SavedNews />
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
+        <PopupWithForm
+          title="Iniciar sesión"
+          isOpen={isLoginOpen}
+          onClose={handleClosePopups}
+        >
+          <Login
+            onSubmit={handleLoginSubmit}
+            onRegisterClick={handleRegisterClick}
+            errorMessage={authError}
+          />
+        </PopupWithForm>
+        <PopupWithForm
+          title="Inscribirse"
+          isOpen={isRegisterOpen}
+          onClose={handleClosePopups}
+        >
+          <Register
+            onSubmit={handleRegisterSubmit}
+            onLoginClick={handleLoginClick}
+            errorMessage={authError}
+          />
+        </PopupWithForm>
+        <PopupWithForm
+          title=""
+          isOpen={isSuccessOpen}
+          onClose={handleClosePopups}
+        >
+          <RegisterSuccess onLoginClick={handleLoginClick} />
+        </PopupWithForm>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

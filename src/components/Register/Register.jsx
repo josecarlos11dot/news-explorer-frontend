@@ -3,12 +3,11 @@ import "./Register.css";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function Register({ onSubmit, onLoginClick }) {
+function Register({ onSubmit, onLoginClick, errorMessage }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [serverError, setServerError] = useState("");
 
   function handleEmailChange(e) {
     const value = e.target.value;
@@ -18,7 +17,6 @@ function Register({ onSubmit, onLoginClick }) {
     } else {
       setEmailError("");
     }
-    if (serverError) setServerError("");
   }
 
   const isValid =
@@ -46,10 +44,11 @@ function Register({ onSubmit, onLoginClick }) {
         value={email}
         onChange={handleEmailChange}
       />
-      {emailError && <span className="register__error" role="alert">
-        {emailError}
-      </span>}
-
+      {emailError && (
+        <span className="register__error" role="alert">
+          {emailError}
+        </span>
+      )}
       <label className="register__label" htmlFor="register-password">
         Contraseña
       </label>
@@ -61,7 +60,6 @@ function Register({ onSubmit, onLoginClick }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-
       <label className="register__label" htmlFor="register-name">
         Nombre de usuario
       </label>
@@ -73,17 +71,14 @@ function Register({ onSubmit, onLoginClick }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-
-      {serverError && (
+      {errorMessage && (
         <span className="register__server-error" role="alert">
-          {serverError}
+          {errorMessage}
         </span>
       )}
-
       <button className="register__submit" type="submit" disabled={!isValid}>
         Inscribirse
       </button>
-
       <p className="register__switch">
         o{" "}
         <button
