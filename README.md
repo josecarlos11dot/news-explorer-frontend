@@ -4,7 +4,7 @@ Proyecto final del bootcamp de Desarrollo Web de TripleTen. Aplicación full sta
 
 ## Demo (Etapa 3 — Autorización con React)
 
-🔗 [https://news-explorer-frontend-7q7b209l4-joses-projects-02fb5149.vercel.app](https://news-explorer-frontend-7q7b209l4-joses-projects-02fb5149.vercel.app)
+🔗 [https://news-explorer-frontend-git-stage-461a1e-joses-projects-02fb5149.vercel.app](https://news-explorer-frontend-git-stage-461a1e-joses-projects-02fb5149.vercel.app)
 
 > Este es un Preview Deployment de Vercel para la rama `stage-react-auth`, ya que el Pull Request de esta etapa permanece abierto sin fusionar (ver nota más abajo). El deploy en producción (`main`) corresponde a la Etapa 1.
 
