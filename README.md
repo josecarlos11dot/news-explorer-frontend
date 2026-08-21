@@ -1,33 +1,35 @@
 # News Explorer — Frontend
 
-Proyecto final del bootcamp de Desarrollo Web de TripleTen. Aplicación que permite buscar noticias mediante News API, ver los resultados en tarjetas, y (próximamente, con el backend) guardar artículos en una cuenta personal.
+Proyecto final del bootcamp de Desarrollo Web de TripleTen. Aplicación full stack que permite buscar noticias mediante News API, iniciar sesión con una cuenta real, y guardar/eliminar artículos asociados a esa cuenta a través de un backend propio.
 
-## Demo
+## Demo (Etapa 3 — Autorización con React)
 
-🔗 [https://news-explorer-frontend-eta.vercel.app](https://news-explorer-frontend-eta.vercel.app)
+🔗 [https://news-explorer-frontend-7q7b209l4-joses-projects-02fb5149.vercel.app](https://news-explorer-frontend-7q7b209l4-joses-projects-02fb5149.vercel.app)
 
-> ⚠️ **Nota sobre News API en producción:** el plan gratuito (Developer) de [News API](https://newsapi.org/) restringe las solicitudes del navegador únicamente a `localhost`.
->
-> Al desplegar en un dominio público (como Vercel), las peticiones a la API se bloquean automáticamente por política del propio servicio, sin relación con el código del proyecto.
->
-> Para ver la búsqueda de noticias funcionando, se recomienda clonar el repositorio y ejecutarlo en modo local (ver instrucciones abajo).
+> Este es un Preview Deployment de Vercel para la rama `stage-react-auth`, ya que el Pull Request de esta etapa permanece abierto sin fusionar (ver nota más abajo). El deploy en producción (`main`) corresponde a la Etapa 1.
+
+> ⚠️ **Nota sobre News API en producción:** el plan gratuito (Developer) de [News API](https://newsapi.org/) restringe las solicitudes del navegador únicamente a `localhost`. Al desplegar en un dominio público, las peticiones de búsqueda de noticias se bloquean automáticamente por política del propio servicio, sin relación con el código del proyecto. El registro, inicio de sesión, guardado y eliminación de artículos funcionan correctamente en producción, ya que dependen del backend propio, no de News API. Para ver la búsqueda de noticias funcionando, se recomienda clonar el repositorio y ejecutarlo en modo local (ver instrucciones abajo).
 
 ## Tecnologías
 
 - React + Vite
-- React Router
+- React Router (incluyendo `ProtectedRoute`)
+- Context API (`CurrentUserContext`)
 - News API (`https://newsapi.org/v2/everything`)
+- Backend propio ([news-explorer-backend](https://github.com/josecarlos11dot/news-explorer-backend)) para autenticación y artículos guardados
 - CSS puro (BEM), fuentes propias vía `@font-face`
-- ESLint (Airbnb base)
+- ESLint (Airbnb base + jsx-a11y)
 
 ## Funcionalidades
 
 - Búsqueda de noticias por palabra clave
 - Resultados paginados de 3 en 3 ("Mostrar más")
 - Estado de carga (preloader) y estado vacío ("No se ha encontrado nada")
+- Registro e inicio de sesión reales, con JWT persistente en `localStorage`
+- Ruta `/saved-news` protegida (`ProtectedRoute`): redirige a `/` con el popup de inicio de sesión si no hay sesión activa
+- Guardar y eliminar artículos reales desde una cuenta autenticada
+- Página "Artículos guardados" con contador y palabras clave ordenadas por popularidad
 - Diseño responsive: desktop, tablet (768px) y mobile (480px)
-- Popups de inicio de sesión, registro y confirmación
-- Sección "Acerca del autor"
 
 ## Instalación local
 
@@ -44,12 +46,15 @@ cd news-explorer-frontend
 npm install
 ```
 
-3. Crea un archivo `.env` en la raíz del proyecto con tu propia clave de [News API](https://newsapi.org/):
+3. Crea un archivo `.env` en la raíz del proyecto:
 
-```
-VITE_NEWS_API_KEY=tu_clave_aqui
+```env
+VITE_NEWS_API_KEY=tu_clave_de_news_api
+VITE_MAIN_API_URL=http://localhost:3000
 ```
 
+
+Puedes obtener tu clave gratuita en [newsapi.org](https://newsapi.org/). Para `VITE_MAIN_API_URL`, asegúrate de tener corriendo [news-explorer-backend](https://github.com/josecarlos11dot/news-explorer-backend) localmente.
 
 4. Ejecuta el proyecto en modo desarrollo:
 
@@ -62,6 +67,10 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Nota sobre el flujo de Git
+
+A diferencia de la Etapa 1 (donde hice merge de `stage-react-api` a `main` para practicar el flujo completo), en esta entrega dejo intencionalmente el Pull Request de `stage-react-auth` → `main` **abierto sin fusionar**, tal como indica la consigna oficial del proyecto: el merge debe realizarse únicamente después de que el trabajo sea acreditado por el revisor.
 
 ## Repositorio relacionado
 
