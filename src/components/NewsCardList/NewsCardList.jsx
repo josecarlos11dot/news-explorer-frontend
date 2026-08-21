@@ -11,7 +11,7 @@ function NewsCardList({
   savedArticles,
   onSaveArticle,
   onDeleteArticle,
-  onLoginRequired,
+  onRegisterRequired,
 }) {
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
 
@@ -36,7 +36,7 @@ function NewsCardList({
             savedArticles={savedArticles}
             onSaveArticle={onSaveArticle}
             onDeleteArticle={onDeleteArticle}
-            onLoginRequired={onLoginRequired}
+            onRegisterRequired={onRegisterRequired}
           />
         ))}
       </ul>

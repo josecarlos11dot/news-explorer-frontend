@@ -5,7 +5,7 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 import { searchNews } from "../../utils/NewsApi";
 import "./Main.css";
 
-function Main({ isLoggedIn, savedArticles, onSaveArticle, onDeleteArticle, onLoginRequired }) {
+function Main({ isLoggedIn, savedArticles, onSaveArticle, onDeleteArticle, onRegisterRequired }) {
   const [articles, setArticles] = useState(() => {
     const saved = localStorage.getItem("lastSearchResults");
     return saved ? JSON.parse(saved) : [];
@@ -85,7 +85,7 @@ function Main({ isLoggedIn, savedArticles, onSaveArticle, onDeleteArticle, onLog
             savedArticles={savedArticles}
             onSaveArticle={onSaveArticle}
             onDeleteArticle={onDeleteArticle}
-            onLoginRequired={onLoginRequired}
+            onRegisterRequired={onRegisterRequired}
           />
         </section>
       )}

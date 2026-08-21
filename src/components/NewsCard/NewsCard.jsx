@@ -16,7 +16,7 @@ function NewsCard({
   savedArticles,
   onSaveArticle,
   onDeleteArticle,
-  onLoginRequired,
+  onRegisterRequired,
 }) {
   const { source, title, publishedAt, description, urlToImage, keyword, url } =
     article;
@@ -26,7 +26,7 @@ function NewsCard({
 
   function handleSaveClick() {
     if (!isLoggedIn) {
-      onLoginRequired();
+      onRegisterRequired();
       return;
     }
     if (isSaved) {
@@ -68,7 +68,7 @@ function NewsCard({
           <button
             className={`news-card__save-button${
               isSaved ? " news-card__save-button_active" : ""
-            }`}
+            }${!isLoggedIn ? " news-card__save-button_tooltip" : ""}`}
             type="button"
             title={
               isLoggedIn

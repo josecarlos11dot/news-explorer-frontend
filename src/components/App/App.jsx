@@ -179,14 +179,13 @@ function App() {
                   onLoginClick={handleLoginClick}
                   onLogoutClick={handleLogout}
                   isLoggedIn={isLoggedIn}
-                  userName={currentUser?.name}
                 />
                 <Main
                   isLoggedIn={isLoggedIn}
                   savedArticles={savedArticles}
                   onSaveArticle={handleSaveArticle}
                   onDeleteArticle={handleDeleteArticle}
-                  onLoginRequired={handleLoginClick}
+                  onRegisterRequired={handleRegisterClick}
                 />
                 <About />
                 <Footer />
@@ -201,7 +200,6 @@ function App() {
                   onLoginClick={handleLoginClick}
                   onLogoutClick={handleLogout}
                   isLoggedIn={isLoggedIn}
-                  userName={currentUser?.name}
                 />
                 <SavedNews
                   userName={currentUser?.name}
