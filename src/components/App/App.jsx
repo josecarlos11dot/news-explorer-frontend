@@ -20,23 +20,24 @@ import {
   deleteArticle,
 } from "../../utils/MainApi";
 import { toApiArticle, toDisplayArticle } from "../../utils/articleAdapter";
+import { JWT_STORAGE_KEY } from "../../utils/constants";
 import "./App.css";
 
 function checkStoredToken() {
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem(JWT_STORAGE_KEY);
   if (!token) {
     return Promise.resolve(null);
   }
   return getUserInfo(token)
     .catch((err) => {
       console.error(err);
-      localStorage.removeItem("jwt");
+      localStorage.removeItem(JWT_STORAGE_KEY);
       return null;
     });
 }
 
 function fetchSavedArticles(currentUser) {
-  const token = localStorage.getItem("jwt");
+  const token = localStorage.getItem(JWT_STORAGE_KEY);
   if (!currentUser || !token) {
     return Promise.resolve([]);
   }
@@ -107,7 +108,7 @@ function App() {
   function handleLoginSubmit({ email, password }) {
     return login({ email, password })
       .then((data) => {
-        localStorage.setItem("jwt", data.token);
+        localStorage.setItem(JWT_STORAGE_KEY, data.token);
         return getUserInfo(data.token);
       })
       .then((userData) => {
@@ -132,12 +133,12 @@ function App() {
 
   function handleLogout() {
     navigate("/", { replace: true, state: {} });
-    localStorage.removeItem("jwt");
+    localStorage.removeItem(JWT_STORAGE_KEY);
     setCurrentUser(null);
   }
 
   function handleSaveArticle(article) {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem(JWT_STORAGE_KEY);
     if (!token) return;
     saveArticle(toApiArticle(article), token)
       .then((savedArticle) => {
@@ -150,7 +151,7 @@ function App() {
   }
 
   function handleDeleteArticle(articleId) {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem(JWT_STORAGE_KEY);
     if (!token) return;
     deleteArticle(articleId, token)
       .then(() => {

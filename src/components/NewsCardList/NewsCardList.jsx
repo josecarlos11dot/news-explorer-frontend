@@ -1,8 +1,8 @@
 import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
+import { CARDS_PER_PAGE } from "../../utils/constants";
 import "./NewsCardList.css";
 
-const CARDS_PER_PAGE = 3;
 
 function NewsCardList({
   articles,
