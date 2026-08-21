@@ -1,11 +1,13 @@
 import { useState } from "react";
 import "./Login.css";
 
-function Login({ onSubmit, onRegisterClick }) {
+function Login({ onSubmit, onRegisterClick, errorMessage }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const isValid = email.trim() !== "" && password.trim() !== "";
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isEmailValid = emailPattern.test(email);
+  const isValid = isEmailValid && password.trim() !== "";
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -25,8 +27,11 @@ function Login({ onSubmit, onRegisterClick }) {
         placeholder="Introduce tu correo electrónico"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        required
       />
-
+      {email && !isEmailValid && (
+        <span className="login__error">Correo electrónico inválido</span>
+      )}
       <label className="login__label" htmlFor="login-password">
         Contraseña
       </label>
@@ -37,16 +42,12 @@ function Login({ onSubmit, onRegisterClick }) {
         placeholder="Introduce tu contraseña"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        required
       />
-
-      <button
-        className="login__submit"
-        type="submit"
-        disabled={!isValid}
-      >
+      {errorMessage && <span className="login__error">{errorMessage}</span>}
+      <button className="login__submit" type="submit" disabled={!isValid}>
         Iniciar sesión
       </button>
-
       <p className="login__switch">
         o{" "}
         <button

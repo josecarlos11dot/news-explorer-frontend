@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 
-function Header({ onLoginClick, isLoggedIn, userName, onLogoutClick }) {
+function Header({ onLoginClick, isLoggedIn, onLogoutClick }) {
   return (
     <header className={`header ${isLoggedIn ? "header_theme_light" : ""}`}>
       <div className="header__content">
@@ -12,7 +12,6 @@ function Header({ onLoginClick, isLoggedIn, userName, onLogoutClick }) {
         <Navigation
           onLoginClick={onLoginClick}
           isLoggedIn={isLoggedIn}
-          userName={userName}
           onLogoutClick={onLogoutClick}
         />
       </div>

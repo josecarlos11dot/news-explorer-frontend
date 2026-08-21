@@ -1,27 +1,42 @@
 import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
+import { CARDS_PER_PAGE } from "../../utils/constants";
 import "./NewsCardList.css";
 
-const CARDS_PER_PAGE = 3;
 
-function NewsCardList({ articles, isSavedView }) {
+function NewsCardList({
+  articles,
+  isSavedView,
+  isLoggedIn,
+  savedArticles,
+  onSaveArticle,
+  onDeleteArticle,
+  onRegisterRequired,
+}) {
   const [visibleCount, setVisibleCount] = useState(CARDS_PER_PAGE);
 
   function handleShowMore() {
     setVisibleCount((prev) => prev + CARDS_PER_PAGE);
   }
 
-  const visibleArticles = articles.slice(0, visibleCount);
-  const hasMore = visibleCount < articles.length;
+  const visibleArticles = isSavedView
+    ? articles
+    : articles.slice(0, visibleCount);
+  const hasMore = !isSavedView && visibleCount < articles.length;
 
   return (
     <section className="news-card-list">
       <ul className="news-card-list__list">
-        {visibleArticles.map((article, index) => (
+        {visibleArticles.map((article) => (
           <NewsCard
-            key={`${article.url}-${index}`}
+            key={article._id || article.url}
             article={article}
             isSavedView={isSavedView}
+            isLoggedIn={isLoggedIn}
+            savedArticles={savedArticles}
+            onSaveArticle={onSaveArticle}
+            onDeleteArticle={onDeleteArticle}
+            onRegisterRequired={onRegisterRequired}
           />
         ))}
       </ul>

@@ -22,8 +22,6 @@
   position: relative;
 }
 
-
-
 .news-card__save-button {
   position: absolute;
   top: 16px;
@@ -43,28 +41,6 @@
 
 .news-card__save-button:hover {
   color: #1a1b22;
-}
-
-.news-card__save-button::after {
-  content: "Inicia sesión para guardar artículos";
-  position: absolute;
-  top: 50%;
-  right: calc(100% + 8px);
-  transform: translateY(-50%);
-  background-color: #FFFFFF;
-  color: #000000;
-  font-size: 12px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 2;
-}
-
-.news-card__save-button:hover::after {
-  opacity: 1;
 }
 
 .news-card__date {
@@ -190,15 +166,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-
-  .news-card__save-button::after {
-    width: 100px;
-    white-space: normal;
-    text-align: right;
-  }
 }
-
-
 
 @media screen and (max-width: 480px) {
   .news-card {
@@ -228,4 +196,26 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+}
+
+.news-card__save-button_tooltip::after {
+  content: attr(aria-label);
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 8px);
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.news-card__save-button_tooltip:hover::after {
+  opacity: 1;
 }
