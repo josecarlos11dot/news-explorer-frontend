@@ -68,6 +68,10 @@ npm run dev
 npm run build
 ```
 
+## Nota sobre el hosting del frontend
+
+El frontend está desplegado en Vercel (dominio propio de la plataforma, con HTTPS automático), mientras que el backend está desplegado en una VM de Google Cloud con dominio propio (`api.newsexplorerjose.mooo.com`). Ambos cumplen con ser accesibles públicamente por nombre de dominio, aunque en plataformas distintas. Se optó por Vercel para el frontend por sus ventajas de despliegue automático, HTTPS gestionado y CDN, sin necesidad de mantenimiento manual de servidor para archivos estáticos.
+
 ## Nota sobre el flujo de Git
 
 A diferencia de la Etapa 1 (donde hice merge de `stage-react-api` a `main` para practicar el flujo completo), en esta entrega dejo intencionalmente el Pull Request de `stage-react-auth` → `main` **abierto sin fusionar**, tal como indica la consigna oficial del proyecto: el merge debe realizarse únicamente después de que el trabajo sea acreditado por el revisor.
